@@ -13,9 +13,9 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
-  PageController _pageController;
-  double width;
-  double height;
+  late PageController _pageController;
+  double? width;
+  double? height;
   double scrollOffset = 0;
 
   @override
@@ -25,7 +25,8 @@ class _DashboardPageState extends State<DashboardPage> {
     _pageController.addListener(() {
       setState(() {
         scrollOffset = _pageController.offset.roundToDouble();
-        scrollOffset = (scrollOffset * 100 / (width * 3)) / 100.roundToDouble();
+        scrollOffset =
+            (scrollOffset * 100 / ((width ?? 1) * 3)) / 100.roundToDouble();
       });
     });
   }
@@ -100,7 +101,7 @@ class _DashboardPageState extends State<DashboardPage> {
         pageSnapping: true,
         children: <Widget>[
           HomePage(),
-         AboutPage(),
+          AboutPage(),
           Container(
               width: width,
               height: height,
@@ -122,7 +123,7 @@ class _DashboardPageState extends State<DashboardPage> {
         ],
       ),
       bottomNavigationBar: Container(
-       // color: Colors.blueAccent.withOpacity(0.3),
+        // color: Colors.blueAccent.withOpacity(0.3),
         height: 50.0,
         child: Stack(
           children: <Widget>[
